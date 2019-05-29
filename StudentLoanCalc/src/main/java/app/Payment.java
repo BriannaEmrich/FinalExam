@@ -1,4 +1,5 @@
 package app;
+import java.lang.Math;
 
 public class Payment extends Loan {
 	
@@ -54,6 +55,23 @@ public class Payment extends Loan {
 	}
 	public void setBalance(double bal) {
 		balance=bal;
+	}
+	
+	public double calcIPmt(double bal, double rate) {
+		double ip = bal * (rate/12);
+		return ip;
+	}
+	public double calcPPmt(double rate, double bal, int term) {
+		double pmt= (rate*bal)/(1-pow((1+rate), (double)term));
+		return pmt;
+	}
+	public double calcTotalPrinciple(double pPmt, double extra) {
+		double totP=pPmt+extra;
+		return totP;
+	}
+	public double calcBalance(double priBal, double totP) {
+		double bal=priBal-totP;
+		return bal;
 	}
 
 }
